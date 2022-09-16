@@ -1,8 +1,45 @@
+import com.sun.jdi.Value;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ImcTest {
+
+    @Test
+    public void testarMulherNemHomem(){
+        try {
+            Imc imc= new Imc(1f,1f,"G");
+            imc.calcularImc();
+            fail();
+        }
+        catch (IllegalArgumentException e){
+            assertEquals("Sexo Inexistente", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testarAlturaInvalida(){
+        try{
+            Imc imc = new Imc(1f,0f,"M");
+            imc.calcularImc();
+            fail();
+        }
+        catch (IllegalArgumentException e){
+            assertEquals("Altura nao pode ser menor ou igual a zero", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testarPesoInvalido(){
+        try{
+            Imc imc = new Imc(0f,1f,"M");
+            imc.calcularImc();
+            fail();
+        }
+        catch (IllegalArgumentException e){
+            assertEquals("Peso nao pode ser menor ou igual a zero",e.getMessage());
+        }
+    }
 
     @Test
     public void deveTestarMulherAbaixoPeso() {

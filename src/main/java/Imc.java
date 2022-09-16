@@ -11,8 +11,21 @@ public class Imc {
     }
 
     public String calcularImc() {
+        if(!this.sexo.equals("F") && !this.sexo.equals("M")){
+            throw new IllegalArgumentException("Sexo Inexistente");
+        }
+        if(this.peso <= 0){
+            throw new IllegalArgumentException("Peso nao pode ser menor ou igual a zero");
+        }
+        if(this.altura <= 0){
+            throw new IllegalArgumentException("Altura nao pode ser menor ou igual a zero");
+        }
         float imc;
         imc = this.peso / (this.altura * this.altura);
+
+
+
+
         if (this.sexo.equals("F")) {
             if (imc < 19.1f) {
                 return "abaixo do peso";
